@@ -1,11 +1,323 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="th">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=h, initial-scale=1.0">
-    <title>Document</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Resume - นวพล เหมหา</title>
+    <!-- ฟอนต์ Sarabun สำหรับความเป็นทางการ -->
+    <link href="https://fonts.googleapis.com/css2?family=Sarabun:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <!-- FontAwesome สำหรับไอคอน -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+        body {
+            font-family: 'Sarabun', sans-serif;
+            background-color: #e2e6ea;
+            color: #333;
+            line-height: 1.6;
+            display: flex;
+            justify-content: center;
+            padding: 40px 20px;
+        }
+        
+        /* รูปแบบหน้ากระดาษ A4 */
+        .cv-document {
+            width: 100%;
+            max-width: 850px;
+            background-color: #ffffff;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+        }
+        
+        /* ส่วนหัว (Header) */
+        .header {
+            display: flex;
+            align-items: center;
+            padding: 40px 50px;
+            background-color: #ffffff;
+            border-bottom: 3px solid #1a365d;
+        }
+        .profile-img {
+            width: 130px;
+            height: 160px;
+            object-fit: cover;
+            border: 2px solid #1a365d;
+            border-radius: 4px;
+            margin-right: 40px;
+            padding: 4px;
+            background-color: #fff;
+        }
+        .header-info {
+            flex-grow: 1;
+        }
+        .name {
+            font-size: 2.4em;
+            font-weight: 700;
+            color: #1a365d;
+            margin-bottom: 5px;
+            letter-spacing: 0.5px;
+        }
+        .job-title {
+            font-size: 1.2em;
+            color: #555;
+            font-weight: 500;
+        }
+        
+        /* ส่วนเนื้อหาหลัก (แบ่ง 2 คอลัมน์) */
+        .content {
+            display: flex;
+            flex-grow: 1;
+        }
+        
+        /* คอลัมน์ซ้าย (ข้อมูลส่วนตัว & การติดต่อ) */
+        .left-col {
+            width: 35%;
+            background-color: #1a365d;
+            color: #ffffff;
+            padding: 35px 30px;
+        }
+        .section-title-left {
+            font-size: 1.15em;
+            font-weight: 600;
+            color: #ffffff;
+            border-bottom: 1px solid #4a6fa5;
+            padding-bottom: 8px;
+            margin-bottom: 20px;
+            letter-spacing: 0.5px;
+        }
+        .info-group {
+            margin-bottom: 30px;
+        }
+        .info-item {
+            margin-bottom: 15px;
+            font-size: 0.95em;
+        }
+        .info-label {
+            font-weight: 600;
+            color: #a0aec0;
+            display: block;
+            margin-bottom: 3px;
+        }
+        .info-value {
+            color: #edf2f7;
+            display: flex;
+            align-items: flex-start;
+            gap: 10px;
+        }
+        .info-value i {
+            margin-top: 5px;
+            color: #a0aec0;
+            width: 16px;
+            text-align: center;
+        }
+        
+        /* คอลัมน์ขวา (ประวัติและการศึกษา) */
+        .right-col {
+            width: 65%;
+            padding: 40px 50px;
+            background-color: #ffffff;
+        }
+        .section-title-right {
+            font-size: 1.3em;
+            font-weight: 700;
+            color: #1a365d;
+            border-bottom: 2px solid #e2e8f0;
+            padding-bottom: 8px;
+            margin-bottom: 20px;
+        }
+        
+        /* สไตล์ของแต่ละหัวข้อในประวัติ */
+        .timeline-box {
+            margin-bottom: 25px;
+        }
+        .timeline-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: baseline;
+            margin-bottom: 5px;
+        }
+        .timeline-title {
+            font-weight: 700;
+            font-size: 1.1em;
+            color: #2d3748;
+        }
+        .timeline-date {
+            font-size: 0.9em;
+            color: #1a365d;
+            font-weight: 600;
+        }
+        .timeline-subtitle {
+            font-weight: 600;
+            color: #4a5568;
+            margin-bottom: 8px;
+            font-size: 1em;
+        }
+        .timeline-detail {
+            font-size: 0.95em;
+            color: #4a5568;
+            padding-left: 18px;
+            list-style-type: disc;
+        }
+        .timeline-detail li {
+            margin-bottom: 4px;
+        }
+        
+        .objective-text {
+            font-size: 0.95em;
+            color: #4a5568;
+            text-align: justify;
+            margin-bottom: 35px;
+            line-height: 1.8;
+        }
+
+        /* รองรับหน้าจอมือถือ */
+        @media (max-width: 768px) {
+            .header {
+                flex-direction: column;
+                text-align: center;
+                padding: 30px 20px;
+            }
+            .profile-img {
+                margin-right: 0;
+                margin-bottom: 20px;
+            }
+            .content {
+                flex-direction: column;
+            }
+            .left-col, .right-col {
+                width: 100%;
+                padding: 30px;
+            }
+        }
+    </style>
 </head>
 <body>
-    <h1>นวพล</h1>
+
+    <div class="cv-document">
+        
+        <!-- ส่วนหัว: ชื่อและรูปถ่าย -->
+        <header class="header">
+            <img src="22.jpg.PNG" alt="รูปถ่ายของ นวพล เหมหา" class="profile-img">
+            <div class="header-info">
+                <h1 class="name">นาย นวพล เหมหา</h1>
+                <div class="job-title">นักเรียนชั้นปวช.2/2 (ชื่อเล่น: อัดฮา)</div>
+            </div>
+        </header>
+
+        <!-- ส่วนเนื้อหา -->
+        <div class="content">
+            
+            <!-- ด้านซ้าย: ข้อมูลส่วนตัว, ติดต่อ, ทักษะ -->
+            <aside class="left-col">
+                <div class="info-group">
+                    <h2 class="section-title-left">ข้อมูลส่วนบุคคล</h2>
+                    <div class="info-item">
+                        <span class="info-label">วันเกิด</span>
+                        <span class="info-value">27 พฤศจิกายน 2552 (อายุ 17 ปี)</span>
+                    </div>
+                    <div class="info-item">
+                        <span class="info-label">สัญชาติ / ศาสนา</span>
+                        <span class="info-value">ไทย / อิสลาม</span>
+                    </div>
+                </div>
+
+                <div class="info-group">
+                    <h2 class="section-title-left">การติดต่อ</h2>
+                    <div class="info-item">
+                        <span class="info-label">ที่อยู่</span>
+                        <span class="info-value"><i class="fas fa-map-marker-alt"></i> 33/1 หมู่ 6 ตำบลอ่าวนาง<br>อำเภอเมือง จังหวัดกระบี่ 81000</span>
+                    </div>
+                    <div class="info-item">
+                        <span class="info-label">โทรศัพท์</span>
+                        <span class="info-value"><i class="fas fa-phone-alt"></i> 081-372-9013</span>
+                    </div>
+                    <div class="info-item">
+                        <span class="info-label">อีเมล</span>
+                        <span class="info-value"><i class="fas fa-envelope"></i> 68219010029@kbtc.ac.th</span>
+                    </div>
+                </div>
+
+                <div class="info-group">
+                    <h2 class="section-title-left">ทักษะและความสามารถ</h2>
+                    <div class="info-item">
+                        <span class="info-label">ด้านคอมพิวเตอร์</span>
+                        <span class="info-value"><i class="fas fa-check-circle"></i> Microsoft Office (Word, Excel, PowerPoint)</span>
+                        <span class="info-value"><i class="fas fa-check-circle"></i> การตัดต่อวิดีโอขั้นพื้นฐาน</span>
+                    </div>
+                    <div class="info-item" style="margin-top: 15px;">
+                        <span class="info-label">ทักษะด้านอื่นๆ</span>
+                        <span class="info-value"><i class="fas fa-check-circle"></i> ความสามารถด้านกีฬา (ฟุตบอล, กรีฑา)</span>
+                        <span class="info-value"><i class="fas fa-check-circle"></i> ทักษะความเป็นผู้นำและการทำงานเป็นทีม</span>
+                    </div>
+                </div>
+            </aside>
+
+            <!-- ด้านขวา: เป้าหมาย, ประวัติการศึกษา, กิจกรรม -->
+            <main class="right-col">
+                
+                <h2 class="section-title-right">เป้าหมายทางการศึกษา (Objective)</h2>
+                <p class="objective-text">
+                    ข้าพเจ้ามีความมุ่งมั่นที่จะพัฒนาตนเองทั้งในด้านวิชาการและทักษะการปฏิบัติงานจริง มีความสนใจเป็นพิเศษในด้านเทคโนโลยีและการประยุกต์ใช้วิทยาศาสตร์ และพร้อมที่จะเรียนรู้ประสบการณ์ใหม่ๆ เพื่อนำไปต่อยอดในการศึกษาต่อระดับอุดมศึกษาและการประกอบอาชีพในอนาคตอย่างมีประสิทธิภาพ
+                </p>
+
+                <h2 class="section-title-right">ประวัติการศึกษา (Education)</h2>
+                
+                <div class="timeline-box">
+                    <div class="timeline-header">
+                        <span class="timeline-title">ระดับมัธยมศึกษาตอนปลาย</span>
+                        <span class="timeline-date">พ.ศ. 2567 – ปัจจุบัน</span>
+                    </div>
+                    <div class="timeline-subtitle">วิทยาลัยเทคนิคกระบี่, จังหวัดกระบี่</div>
+                    <ul class="timeline-detail">
+                        <li>แผนการเรียน: เทคโนโลยีสารสนเทศ</li>
+                        <li>เกรดเฉลี่ยสะสม (GPAX): 2.85</li>
+                    </ul>
+                </div>
+
+                <div class="timeline-box">
+                    <div class="timeline-header">
+                        <span class="timeline-title">ระดับมัธยมศึกษาตอนต้น</span>
+                        <span class="timeline-date">พ.ศ. 2566</span>
+                    </div>
+                    <div class="timeline-subtitle">โรงเรียนหนองทะเลวิทยา, จังหวัดกระบี่</div>
+                    <ul class="timeline-detail">
+                        <li>เกรดเฉลี่ยสะสม (GPAX): 3.55</li>
+                    </ul>
+                </div>
+
+                <h2 class="section-title-right">ผลงานและกิจกรรม (Activities & Achievements)</h2>
+                
+                <div class="timeline-box">
+                    <div class="timeline-header">
+                        <span class="timeline-title">รางวัลชนะเลิศ การแข่งขันตอบคำถามวิทยาศาสตร์</span>
+                        <span class="timeline-date">พ.ศ. 2564</span>
+                    </div>
+                    <div class="timeline-subtitle">จัดโดย: โรงเรียนหนองทะเลวิทยา</div>
+                    <ul class="timeline-detail">
+                        <li>เป็นตัวแทนเข้าร่วมการแข่งขันและได้รับรางวัลชนะเลิศระดับชั้นมัธยมศึกษาตอนต้น</li>
+                    </ul>
+                </div>
+
+                <div class="timeline-box">
+                    <div class="timeline-header">
+                        <span class="timeline-title">กิจกรรมจิตอาสาพัฒนาโรงเรียน</span>
+                        <span class="timeline-date">พ.ศ. 2565</span>
+                    </div>
+                    <div class="timeline-subtitle">จัดโดย: โรงเรียนหนองทะเลวิทยา</div>
+                    <ul class="timeline-detail">
+                        <li>ร่วมจัดกิจกรรมเพื่อสังคมและบำเพ็ญประโยชน์ในการปรับปรุงภูมิทัศน์ของโรงเรียน</li>
+                    </ul>
+                </div>
+
+            </main>
+        </div>
+    </div>
+
 </body>
 </html>
